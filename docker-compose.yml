@@ -1,0 +1,89 @@
+version: '3.8'
+
+services:
+  cassandra1:
+    image: cassandra:${CASSANDRA_VERSION}
+    container_name: ${CASSANDRA_CONTAINER_NAME_1}
+    environment:
+      - CASSANDRA_CLUSTER_NAME=${CASSANDRA_CLUSTER_NAME}
+      - CASSANDRA_SEEDS=${CASSANDRA_SEEDS}
+    networks:
+      bridge_network:
+        ipv4_address: ${CASSANDRA_IP_1}
+    volumes:
+      - cassandra1_data:${CASSANDRA_VOLUME}
+    ports:
+      - "${CASSANDRA_PUBLISH_PORT_1}:9042"
+    restart: always
+    deploy:
+      resources:
+        limits:
+          memory: ${MEMORY}
+          cpus: ${CPUS}
+    logging:
+      driver: ${LOGS_DRIVER}
+      options:
+        max-size: ${LOGS_MAX_SIZE_FILE}
+        max-file: ${LOGS_MAX_FILE}
+  
+  cassandra2:
+    image: cassandra:${CASSANDRA_VERSION}
+    container_name: ${CASSANDRA_CONTAINER_NAME_2}
+    environment:
+      - CASSANDRA_CLUSTER_NAME=${CASSANDRA_CLUSTER_NAME}
+      - CASSANDRA_SEEDS=${CASSANDRA_SEEDS}
+    networks:
+      bridge_network:
+        ipv4_address: ${CASSANDRA_IP_2}
+    volumes:
+      - cassandra2_data:${CASSANDRA_VOLUME}
+    ports:
+      - "${CASSANDRA_PUBLISH_PORT_2}:9042"
+    restart: always
+    deploy:
+      resources:
+        limits:
+          memory: ${MEMORY}
+          cpus: ${CPUS}
+    logging:
+      driver: ${LOGS_DRIVER}
+      options:
+        max-size: ${LOGS_MAX_SIZE_FILE}
+        max-file: ${LOGS_MAX_FILE}
+  
+  cassandra3:
+    image: cassandra:${CASSANDRA_VERSION}
+    container_name: ${CASSANDRA_CONTAINER_NAME_3}
+    environment:
+      - CASSANDRA_CLUSTER_NAME=${CASSANDRA_CLUSTER_NAME}
+      - CASSANDRA_SEEDS=${CASSANDRA_SEEDS}
+    networks:
+      bridge_network:
+        ipv4_address: ${CASSANDRA_IP_3}
+    volumes:
+      - cassandra3_data:${CASSANDRA_VOLUME}
+    ports:
+      - "${CASSANDRA_PUBLISH_PORT_3}:9042"
+    restart: always
+    deploy:
+      resources:
+        limits:
+          memory: ${MEMORY}
+          cpus: ${CPUS}
+    logging:
+      driver: ${LOGS_DRIVER}
+      options:
+        max-size: ${LOGS_MAX_SIZE_FILE}
+        max-file: ${LOGS_MAX_FILE}
+
+networks:
+  bridge_network:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: ${CASSANDRA_SUBNET}
+
+volumes:
+  cassandra1_data:
+  cassandra2_data:
+  cassandra3_data:
