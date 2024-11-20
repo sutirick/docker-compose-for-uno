@@ -28,16 +28,16 @@ docker ps -a
 docker network inspect <nerwork name or network_id>
 ```
 
-![Image alt](https://github.com/sutirick/docker-compose-for-uno/raw/assets/./20241120152220.png
+![Image alt](https://github.com/sutirick/docker-compose-for-uno/raw/assets/./20241120152220.png)
 
-![Image alt](https://github.com/sutirick/docker-compose-for-uno/raw/assets/./20241120152327.png
+![Image alt](https://github.com/sutirick/docker-compose-for-uno/raw/assets/./20241120152327.png)
 
 ```shell
 docker logs cassandra1
 ```
 
 Увидим, что все завелось корректно
-![Image alt](https://github.com/sutirick/docker-compose-for-uno/raw/assets/./20241120152708.png
+![Image alt](https://github.com/sutirick/docker-compose-for-uno/raw/assets/./20241120152708.png)
 
 ```shell
 docker exec -it cassandra1
@@ -45,7 +45,7 @@ docker exec -it cassandra1
 SELECT <columns | *> FROM system.local
 ```
 
-![Image alt](https://github.com/sutirick/docker-compose-for-uno/raw/assets/./20241120153347.png
+![Image alt](https://github.com/sutirick/docker-compose-for-uno/raw/assets/./20241120153347.png)
 
 *Информация о текущем состоянии данной ноды*
 
@@ -53,7 +53,7 @@ SELECT <columns | *> FROM system.local
 SELECT <columns | *> FROM system.peers
 ```
 
-![Image alt](https://github.com/sutirick/docker-compose-for-uno/raw/assets/./20241120153801.png
+![Image alt](https://github.com/sutirick/docker-compose-for-uno/raw/assets/./20241120153801.png)
 *Информация о других нодах в кластере*
 
 #### 5.Установим cqlsh на другой ПК
@@ -64,6 +64,6 @@ pip install cqlsh [--break-system-packages]
 
 #### 6.Проверим подключение ко всем нодам кластера
 
-![Image alt](https://github.com/sutirick/docker-compose-for-uno/raw/assets/./20241120154143.png
+![Image alt](https://github.com/sutirick/docker-compose-for-uno/raw/assets/./20241120154143.png)
 
 ### Спасибо за внимание
