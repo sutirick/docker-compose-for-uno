@@ -17,7 +17,7 @@ docker compose up -d
 docker compose -f <docker-compose-file> up [OPTIONS] [SERVICE...]
 ```
 
-![Image alt](https://github.com/sutirick/docker-compose-for-uno/raw/assets/./Pasted image 20241120154502.png)
+![Image alt](https://github.com/sutirick/docker-compose-for-uno/raw/assets/./20241120154502.png)
 Видим, что все стартануло успешно.
 
 #### 4. Проверяем локально
