@@ -8,7 +8,7 @@ services:
       - CASSANDRA_CLUSTER_NAME=${CASSANDRA_CLUSTER_NAME}
       - CASSANDRA_SEEDS=${CASSANDRA_SEEDS}
     networks:
-      bridge_network:
+      cassanda_macvlan_network:
         ipv4_address: ${CASSANDRA_IP_1}
     volumes:
       - cassandra1_data:${CASSANDRA_VOLUME}
@@ -33,7 +33,7 @@ services:
       - CASSANDRA_CLUSTER_NAME=${CASSANDRA_CLUSTER_NAME}
       - CASSANDRA_SEEDS=${CASSANDRA_SEEDS}
     networks:
-      bridge_network:
+      cassanda_macvlan_network:
         ipv4_address: ${CASSANDRA_IP_2}
     volumes:
       - cassandra2_data:${CASSANDRA_VOLUME}
@@ -58,7 +58,7 @@ services:
       - CASSANDRA_CLUSTER_NAME=${CASSANDRA_CLUSTER_NAME}
       - CASSANDRA_SEEDS=${CASSANDRA_SEEDS}
     networks:
-      bridge_network:
+      cassanda_macvlan_network:
         ipv4_address: ${CASSANDRA_IP_3}
     volumes:
       - cassandra3_data:${CASSANDRA_VOLUME}
@@ -77,8 +77,10 @@ services:
         max-file: ${LOGS_MAX_FILE}
 
 networks:
-  bridge_network:
-    driver: bridge
+  cassanda_macvlan_network:
+    driver: macvlan
+    driver_opts:
+      parent: enp0s3
     ipam:
       config:
         - subnet: ${CASSANDRA_SUBNET}
