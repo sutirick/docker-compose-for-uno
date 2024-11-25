@@ -8,12 +8,10 @@ services:
       - CASSANDRA_CLUSTER_NAME=${CASSANDRA_CLUSTER_NAME}
       - CASSANDRA_SEEDS=${CASSANDRA_SEEDS}
     networks:
-      cassanda_macvlan_network:
+      cassandra_network:
         ipv4_address: ${CASSANDRA_IP_1}
     volumes:
       - cassandra1_data:${CASSANDRA_VOLUME}
-    ports:
-      - "${CASSANDRA_PUBLISH_PORT_1}:9042"
     restart: always
     deploy:
       resources:
@@ -33,12 +31,10 @@ services:
       - CASSANDRA_CLUSTER_NAME=${CASSANDRA_CLUSTER_NAME}
       - CASSANDRA_SEEDS=${CASSANDRA_SEEDS}
     networks:
-      cassanda_macvlan_network:
+      cassandra_network:
         ipv4_address: ${CASSANDRA_IP_2}
     volumes:
       - cassandra2_data:${CASSANDRA_VOLUME}
-    ports:
-      - "${CASSANDRA_PUBLISH_PORT_2}:9042"
     restart: always
     deploy:
       resources:
@@ -58,12 +54,10 @@ services:
       - CASSANDRA_CLUSTER_NAME=${CASSANDRA_CLUSTER_NAME}
       - CASSANDRA_SEEDS=${CASSANDRA_SEEDS}
     networks:
-      cassanda_macvlan_network:
+      cassandra_network:
         ipv4_address: ${CASSANDRA_IP_3}
     volumes:
       - cassandra3_data:${CASSANDRA_VOLUME}
-    ports:
-      - "${CASSANDRA_PUBLISH_PORT_3}:9042"
     restart: always
     deploy:
       resources:
@@ -77,13 +71,14 @@ services:
         max-file: ${LOGS_MAX_FILE}
 
 networks:
-  cassanda_macvlan_network:
-    driver: macvlan
+  cassandra_network:
+    driver: ipvlan
     driver_opts:
-      parent: enp0s3
+      parent: ${SERVER_INTERFACE}
     ipam:
       config:
         - subnet: ${CASSANDRA_SUBNET}
+          gateway: ${GATEWAY}
 
 volumes:
   cassandra1_data:
